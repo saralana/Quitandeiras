@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5f191e">
+  <meta name="description" content="Quitandeiras — memórias, receitas e modos de fazer de mulheres de Guanhães, no Vale do Aço, em Minas Gerais.">
+  <title>Quitandeiras</title>
+  <link rel="preload" href="./assets/fonts/LeagueSpartan-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main id="app">
+    <!-- HOME -->
+    <section id="home-view" class="home-view" aria-label="Página inicial">
+      <div class="home-shade"></div>
+      <header class="home-header">
+        <button class="home-wordmark js-about-open" type="button" aria-label="Sobre o projeto Quitandeiras">
+          <img id="home-wordmark-image" class="brand-title-image" src="./assets/images/titles/quitandeiras-claro.png" alt="" aria-hidden="true">
+          <span id="home-wordmark-fallback" class="title-text-fallback" hidden>QUITANDEIRAS</span>
+        </button>
+        <nav class="home-nav" id="home-nav" aria-label="Navegação das quitandeiras"></nav>
+      </header>
+      <div class="home-bottom-note" aria-hidden="true">
+        <span class="home-bottom-line"></span>
+      </div>
+    </section>
+
+    <!-- PÁGINAS INDIVIDUAIS -->
+    <section id="person-view" class="person-view" hidden aria-label="Página da quitandeira">
+      <header class="person-header">
+        <div class="person-brand-group">
+          <button class="person-wordmark js-about-open" type="button" aria-label="Sobre o projeto Quitandeiras">
+            <img id="person-wordmark-image" class="brand-title-image" src="./assets/images/titles/quitandeiras-vinho.png" alt="" aria-hidden="true">
+            <span id="person-wordmark-fallback" class="title-text-fallback" hidden>QUITANDEIRAS</span>
+          </button>
+        </div>
+        <div class="person-title-wrap">
+          <img id="person-icon" class="person-icon" src="" alt="">
+          <div>
+            <h1 id="person-name" aria-label="Edimara">
+              <img id="person-title-image" class="person-title-image" src="./assets/images/titles/edimara-vinho.png" alt="Edimara">
+              <span id="person-title-fallback" class="title-text-fallback" hidden>Edimara</span>
+            </h1>
+          </div>
+        </div>
+        <nav class="person-nav" id="person-nav" aria-label="Navegação entre páginas"></nav>
+      </header>
+
+      <main class="person-content">
+        <section class="gallery" aria-label="Galeria de fotografias">
+          <div class="gallery-frame">
+            <img id="gallery-image" src="" alt="Registro do preparo de quitandas" hidden>
+            <div class="gallery-empty" id="gallery-empty" role="status" aria-live="polite">
+              <span class="gallery-empty-title" id="gallery-empty-title">CARREGANDO GALERIA</span>
+              <p id="gallery-empty-message">As fotografias desta quitandeira estão sendo localizadas.</p>
+              <code id="gallery-empty-path"></code>
+            </div>
+            <button class="gallery-arrow gallery-prev" id="gallery-prev" type="button" aria-label="Fotografia anterior">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+            </button>
+            <button class="gallery-arrow gallery-next" id="gallery-next" type="button" aria-label="Próxima fotografia">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg>
+            </button>
+            <div class="gallery-count" id="gallery-count" aria-live="polite">01 / 05</div>
+          </div>
+          <div class="gallery-caption-row">
+            <span class="gallery-caption" id="gallery-caption">Memórias de uma quitanda</span>
+            <div class="gallery-dots" id="gallery-dots" aria-label="Selecionar fotografia"></div>
+          </div>
+        </section>
+
+        <aside class="story-panel">
+          <p class="story-kicker" id="story-kicker">MEMÓRIA E SABERES</p>
+          <div class="story-copy" id="story-copy"></div>
+
+          <section class="audio-section" aria-label="Player de áudio">
+            <div class="chapter-heading">
+              <span id="chapter-label">CAPÍTULO 1</span>
+              <span class="chapter-track-count" id="track-count">05 ÁUDIOS</span>
+            </div>
+            <div class="audio-player">
+              <audio id="audio-element" preload="metadata"></audio>
+              <div class="track-meta">
+                <span class="track-title" id="current-track-title">Faixa 01</span>
+                <span class="audio-status" id="audio-status" aria-live="polite">Selecione uma faixa para ouvir</span>
+              </div>
+              <div class="progress-row">
+                <span class="time-label" id="current-time">00:00</span>
+                <input id="audio-progress" class="audio-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso do áudio">
+                <span class="time-label" id="duration">00:00</span>
+              </div>
+              <div class="player-controls">
+                <button class="control-button" id="previous-track" type="button" aria-label="Faixa anterior">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 8 12l11 6z"/></svg>
+                </button>
+                <button class="control-button play-button" id="play-audio" type="button" aria-label="Reproduzir áudio">
+                  <svg class="play-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7z"/></svg>
+                  <svg class="pause-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM14 5h3v14h-3z"/></svg>
+                </button>
+                <button class="control-button" id="next-track" type="button" aria-label="Próxima faixa">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l11 6-11 6z"/></svg>
+                </button>
+              </div>
+            </div>
+            <ol class="playlist" id="playlist" aria-label="Lista de áudios"></ol>
+          </section>
+          <a class="back-home" href="#home">← VOLTAR À HOME</a>
+        </aside>
+      </main>
+    </section>
+  </main>
+
+  <!-- PAINEL LATERAL SOBRE O PROJETO -->
+  <div class="about-backdrop" id="about-backdrop" hidden></div>
+  <aside class="about-drawer" id="about-drawer" aria-hidden="true" aria-labelledby="about-title">
+    <button class="drawer-close" id="drawer-close" type="button" aria-label="Fechar informações">×</button>
+    <h2 id="about-title" aria-label="Quitandeiras">
+      <img id="about-title-image" class="about-title-image" src="./assets/images/titles/quitandeiras-vinho.png" alt="Quitandeiras">
+      <span id="about-title-fallback" class="title-text-fallback" hidden>QUITANDEIRAS</span>
+    </h2>
+    <br><br><br>
+    <div class="drawer-copy">
+      <p>Quitandeiras é um projeto que registrou receitas e modos de fazer de cinco mulheres de Guanhães, na região do Vale do Aço, em Minas Gerais.</p>
+      <p>Ainda que o fazer quitanda seja um dos pilares da cultura alimentar mineira, existe o inevitável risco de apagamento de conhecimentos específicos ligados a esse saber, historicamente cultivados por mulheres.</p>
+      <p>A pesquisa que resultou nesse site deseja deixar registradas as memórias que elas cultivam e preservam e, de alguma forma, contribuir para que o esquecimento não faça com que técnicas e histórias desapareçam.</p>
+    </div>
+    <div class="drawer-credits">
+      <p><strong>QUITANDEIRAS</strong><br>Edimara, Madalena, Maria da Luz, Silvana e Tia Nega</p>
+      <p><strong>CONCEPÇÃO E FOTOGRAFIAS</strong><br>Luísa Macedo</p>
+      <p><strong>DESENVOLVIMENTO WEB</strong><br>Sara Lana</p>
+      <p><strong>DESIGN GRÁFICO</strong><br>Luísa Rabello</p>
+    </div>
+    <p class="drawer-footer">VALE DO AÇO · MINAS GERAIS</p>
+  </aside>
+</body>
+</html>
