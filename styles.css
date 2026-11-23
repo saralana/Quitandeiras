@@ -36,6 +36,8 @@
   --cream-light: #f8ecd9;
   --ink: #321316;
   --line: rgba(95, 25, 30, .46);
+  --double-line-thickness: 1px;
+  --double-line-gap: 3px;
   --home-photo: url("./assets/images/home-hero.jpg");
   --page-gutter: clamp(24px, 3.5vw, 64px);
 }
@@ -110,7 +112,7 @@ flex: 0 0 auto;
   color: var(--cream);
   text-decoration: none;
   text-align: center;
-  border-bottom: 5px double rgba(245,225,195,.68);
+  border-bottom: none;
   transition: opacity .2s ease, transform .2s ease;
 }
 .home-nav-link + .home-nav-link { border-left: none; }
@@ -188,7 +190,23 @@ flex: 0 0 auto;
 .drawer-rule span { width: 6px; height: 6px; transform: rotate(45deg); background: var(--wine); }
 .drawer-copy { font-size: 17px; line-height: 1.28; font-weight: 500; }
 .drawer-copy p { margin: 0 0 22px; }
-.drawer-credits { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.3; }
+.drawer-credits {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: none;
+  background-image:
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line));
+  background-size:
+    100% var(--double-line-thickness),
+    100% var(--double-line-thickness);
+  background-position:
+    left top,
+    left calc(var(--double-line-thickness) + var(--double-line-gap));
+  background-repeat: no-repeat;
+  font-size: 14px;
+  line-height: 1.3;
+}
 .drawer-credits p { margin: 0 0 19px; }
 .drawer-credits strong { font-size: 11px; letter-spacing: .08em; }
 .drawer-footer { margin: 34px 0 0; font-size: 10px; letter-spacing: .24em; }
@@ -286,7 +304,27 @@ flex: 0 0 auto;
 .audio-section { margin-top: clamp(34px, 4vw, 64px); }
 .chapter-heading { display: none; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; font-size: 14px; font-weight: 600; }
 .chapter-track-count { font-size: 10px; font-weight: 500; letter-spacing: .12em; opacity: .58; }
-.audio-player { padding: 17px 0 15px; border-top: 3px double var(--line); border-bottom: 3px double var(--line); }
+.audio-player {
+  padding: 20px 0 18px;
+  border-top: none;
+  border-bottom: none;
+  background-image:
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line));
+  background-size:
+    100% var(--double-line-thickness),
+    100% var(--double-line-thickness),
+    100% var(--double-line-thickness),
+    100% var(--double-line-thickness);
+  background-position:
+    left top,
+    left calc(var(--double-line-thickness) + var(--double-line-gap)),
+    left calc(100% - var(--double-line-gap) - var(--double-line-thickness) - var(--double-line-thickness)),
+    left bottom;
+  background-repeat: no-repeat;
+}
 .track-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .track-title { font-size: 15px; font-weight: 600; }
 .audio-status { max-width: 57%; font-size: 11px; line-height: 1.2; text-align: right; opacity: .64; }
@@ -526,8 +564,18 @@ flex: 0 0 auto;
   justify-self: stretch;
   align-items: stretch;
   gap: 0;
-  padding: 3px 0 12px;
-  border-bottom: 4px double rgba(245,225,195,.68);
+  padding: 3px 0 20px;
+  border-bottom: none;
+  background-image:
+    linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68)),
+    linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68));
+  background-size:
+    100% var(--double-line-thickness),
+    100% var(--double-line-thickness);
+  background-position:
+    left bottom,
+    left calc(100% - var(--double-line-thickness) - var(--double-line-gap));
+  background-repeat: no-repeat;
 }
 
 /* Cada coluna cresce a partir da largura natural do título */
@@ -716,7 +764,13 @@ flex: 0 0 auto;
   content: "";
   display: block;
   width: 100%;
-  border-top: 3px double var(--line);
+  height: calc(var(--double-line-thickness) + var(--double-line-gap) + var(--double-line-thickness));
+  background: linear-gradient(
+    to bottom,
+    var(--line) 0 var(--double-line-thickness),
+    transparent var(--double-line-thickness) calc(var(--double-line-thickness) + var(--double-line-gap)),
+    var(--line) calc(var(--double-line-thickness) + var(--double-line-gap)) calc(var(--double-line-thickness) + var(--double-line-gap) + var(--double-line-thickness))
+  );
   margin-top: 22px;
 }
 
@@ -837,7 +891,17 @@ flex: 0 0 auto;
     justify-content: flex-end;
 
     border-left: none !important;
-    border-bottom: 3px double rgba(245,225,195,.68);
+    border-bottom: none;
+    background-image:
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68)),
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68));
+    background-size:
+      100% var(--double-line-thickness),
+      100% var(--double-line-thickness);
+    background-position:
+      left bottom,
+      left calc(100% - var(--double-line-thickness) - var(--double-line-gap));
+    background-repeat: no-repeat;
   }
 
   /* Ícones reduzidos */
@@ -932,4 +996,511 @@ flex: 0 0 auto;
     object-fit: contain;
   }
 
+}
+
+/* APOIO E REALIZAÇÃO — rodapé da barra lateral Sobre */
+.drawer-funding {
+  margin-top: 34px;
+  padding-top: 20px;
+}
+.drawer-funding-edital {
+  margin: 0 0 20px;
+  font-size: clamp(13px, 1vw, 10px);
+  line-height: 1.3;
+  font-weight: 500;
+}
+.drawer-funding-edital span {
+  display: inline;
+  padding: 2px 4px;
+  color: var(--wine);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.drawer-funding-row {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(12px, 2vw, 22px);
+}
+.drawer-funding-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+.drawer-funding-label {
+  display: block;
+  padding: 3px 6px;
+  color: var(--wine);
+  font-size: clamp(13px, 1vw, 10px);;
+  line-height: 1.15;
+  font-weight: 500;
+}
+.drawer-funding-logo {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 76px;
+  object-fit: contain;
+  object-position: left center;
+}
+@media (max-width: 420px) {
+  .drawer-funding-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .drawer-funding-logo {
+    max-height: 82px;
+  }
+}
+
+
+/* AJUSTE DO MENU DA HOME — ícones menores e linha alinhada ao conjunto dos nomes */
+@media (min-width: 761px) {
+  .home-nav {
+    display: flex !important;
+    width: max-content !important;
+    max-width: calc(100vw - 2 * var(--page-gutter));
+    min-width: 0;
+    justify-self: center;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(22px, 3.6vw, 40px);
+    padding: 3px 0 30px;
+    border-bottom: none;
+    background-image:
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68)),
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68));
+    background-size:
+      100% var(--double-line-thickness),
+      100% var(--double-line-thickness);
+    background-position:
+      left bottom,
+      left calc(100% - var(--double-line-thickness) - var(--double-line-gap));
+    background-repeat: no-repeat;
+  }
+
+  .home-nav-link {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    padding: 0;
+    gap: 7px;
+    border: 0 !important;
+  }
+
+  .home-nav-link img:not(.home-nav-title-image) {
+    width: clamp(30px, 2.5vw, 48px);
+    height: clamp(26px, 2.8vw, 44px);
+    object-fit: contain;
+  }
+
+  .home-nav-link .home-nav-title-image {
+    display: block;
+    width: auto;
+    height: clamp(20px, 1.7vw, 28px);
+    max-width: none;
+    object-fit: contain;
+  }
+}
+
+
+/* ==========================================
+   CORREÇÕES FINAIS — HOME MOBILE E TÍTULO
+   - Logo da home centralizado e sem cortes
+   - Ícone alinhado verticalmente ao lettering
+========================================== */
+
+/* HOME MOBILE: limitar a imagem à largura útil da tela */
+@media (max-width: 760px) {
+  .home-header {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .home-wordmark {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .home-wordmark .brand-title-image {
+    display: block;
+    width: 80% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* PÁGINAS INDIVIDUAIS: alinhar o ícone ao nome,
+   e não ao bloco que também contém a linha dupla */
+.person-title-wrap {
+  align-items: flex-start !important;
+}
+
+.person-icon {
+  align-self: flex-start;
+  margin-top: calc(
+    (clamp(38px, 4vw, 68px) - clamp(48px, 5vw, 78px)) / 2
+  );
+}
+
+/* No celular, o nome tem 42px e o ícone 54px */
+@media (max-width: 760px) {
+  .person-icon {
+    margin-top: -6px;
+  }
+}
+
+/* =====================================================
+   MENU RESPONSIVO DA HOME — AJUSTE FINAL
+   Desktop largo: menu ao lado do logo, no topo.
+   Tablet: menu centralizado na barra inferior; logo à esquerda.
+   Celular: menu na barra inferior; logo centralizado.
+===================================================== */
+
+/* DESKTOP LARGO — acima de 1220px */
+@media (min-width: 1221px) {
+  .home-header {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: max-content minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: clamp(32px, 3.5vw, 68px) !important;
+    padding: clamp(26px, 3vw, 54px) var(--page-gutter) 0;
+  }
+
+  .home-wordmark {
+    justify-self: start;
+    justify-content: flex-start !important;
+    width: auto !important;
+    max-width: calc(100vw - 2 * var(--page-gutter));
+    margin: 0 !important;
+  }
+
+  .home-wordmark .brand-title-image {
+    object-position: left center;
+  }
+
+  .home-nav {
+    position: static !important;
+    justify-self: end !important;
+    align-self: start;
+    width: max-content !important;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* TABLETS E TELAS INTERMEDIÁRIAS — menu desce para a barra inferior */
+@media (min-width: 761px) and (max-width: 1220px) {
+  .home-view {
+    position: relative;
+  }
+
+  /* O cabeçalho deixa de reservar uma segunda linha para o menu. */
+  .home-header {
+    position: static !important;
+    display: block !important;
+    width: 100%;
+    padding: 26px var(--page-gutter) 0;
+  }
+
+  /* Logo permanece à esquerda em tablets. */
+  .home-wordmark {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+    max-width: calc(100vw - 2 * var(--page-gutter)) !important;
+    height: clamp(68px, 7vw, 86px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-wordmark .brand-title-image {
+    display: block;
+    width: auto !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  /* Menu centralizado em barra inferior, com cinco colunas. */
+  .home-nav {
+    position: absolute !important;
+    z-index: 3;
+    left: clamp(18px, 3vw, 40px);
+    right: clamp(18px, 3vw, 40px);
+    bottom: clamp(26px, 4vh, 46px);
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: end;
+    justify-content: center;
+    justify-self: auto;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+    gap: 0;
+    margin: 0;
+    padding: 0 0 13px;
+    border: 0;
+    background-image:
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68)),
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68));
+    background-size:
+      100% var(--double-line-thickness),
+      100% var(--double-line-thickness);
+    background-position:
+      left bottom,
+      left calc(100% - var(--double-line-thickness) - var(--double-line-gap));
+    background-repeat: no-repeat;
+    overflow: visible;
+  }
+
+  .home-nav-link {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 0 !important;
+    gap: 6px;
+    padding: 0 3px 8px;
+    border: 0 !important;
+    background: none !important;
+  }
+
+  .home-nav-link img:not(.home-nav-title-image) {
+    width: clamp(24px, 3vw, 34px);
+    height: clamp(21px, 2.6vw, 30px);
+    object-fit: contain;
+  }
+
+  .home-nav-link .home-nav-title-image {
+    display: block;
+    width: auto;
+    height: clamp(13px, 1.4vw, 17px);
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .home-nav-link span,
+  .home-nav-name-fallback {
+    font-size: clamp(9px, 1vw, 12px);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .home-bottom-note {
+    display: none;
+  }
+}
+
+/* CELULARES — mesma barra inferior, com logo centralizado. */
+@media (max-width: 760px) {
+  .home-view {
+    position: relative;
+  }
+
+  .home-header {
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100%;
+    padding: 24px var(--page-gutter) 0;
+  }
+
+  .home-wordmark {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .home-wordmark .brand-title-image {
+    display: block;
+    width: 80% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .home-nav {
+    position: absolute !important;
+    z-index: 3;
+    left: 14px;
+    right: 14px;
+    bottom: calc(22px + env(safe-area-inset-bottom));
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: end;
+    justify-content: center;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+    gap: 0;
+    margin: 0;
+    padding: 0 0 13px;
+    border: 0;
+    background-image:
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68)),
+      linear-gradient(rgba(245,225,195,.68), rgba(245,225,195,.68));
+    background-size:
+      100% var(--double-line-thickness),
+      100% var(--double-line-thickness);
+    background-position:
+      left bottom,
+      left calc(100% - var(--double-line-thickness) - var(--double-line-gap));
+    background-repeat: no-repeat;
+    overflow: visible;
+  }
+
+  .home-nav-link {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 0 !important;
+    gap: 5px;
+    padding: 0 2px 8px;
+    border: 0 !important;
+    background: none !important;
+  }
+
+  .home-nav-link img:not(.home-nav-title-image) {
+    width: 24px;
+    height: 21px;
+    object-fit: contain;
+  }
+
+  .home-nav-link .home-nav-title-image {
+    display: block;
+    width: auto;
+    height: 13px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .home-nav-link span,
+  .home-nav-name-fallback {
+    font-size: 9px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .home-bottom-note {
+    display: none;
+  }
+}
+
+
+/* ==========================================
+   PÁGINAS INDIVIDUAIS — ÍCONE PROPORCIONAL
+   O ícone acompanha a altura visual da maiúscula
+   do lettering, sem competir com o nome.
+========================================== */
+.person-icon {
+  width: clamp(34px, 3.4vw, 54px) !important;
+  height: clamp(34px, 3.4vw, 54px) !important;
+  align-self: flex-start;
+  margin-top: calc(
+    (clamp(38px, 4vw, 68px) - clamp(34px, 3.4vw, 54px)) / 2
+  ) !important;
+}
+
+/* No celular, o lettering fica com 42px de altura. */
+@media (max-width: 760px) {
+  .person-icon {
+    width: 34px !important;
+    height: 34px !important;
+    margin-top: 4px !important;
+  }
+}
+
+
+/* =====================================================
+   MOBILE — ORDEM DO CABEÇALHO DAS PÁGINAS INDIVIDUAIS
+   1. Logo Quitandeiras
+   2. Navegação
+   3. Ícone + nome da página + linha dupla
+===================================================== */
+@media (max-width: 760px) {
+  .person-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 18px !important;
+  }
+
+  .person-brand-group {
+    order: 1;
+    align-self: flex-start;
+    width: auto;
+  }
+
+  .person-nav {
+    order: 2;
+    display: flex !important;
+    grid-column: auto;
+    grid-row: auto;
+    align-self: stretch;
+    justify-content: flex-start !important;
+    align-items: center;
+    flex-wrap: nowrap !important;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .person-title-wrap {
+    order: 3;
+    display: flex !important;
+    grid-column: auto;
+    grid-row: auto;
+    align-self: stretch;
+    justify-self: auto;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .person-title-wrap h1 {
+    align-items: flex-start;
+  }
 }

@@ -16,7 +16,7 @@ const ASSETS = "./assets";
 const IMAGE_ASSETS = `${ASSETS}/images`;
 const ICONS = `${IMAGE_ASSETS}/icons`;
 const TITLE_IMAGES = `${IMAGE_ASSETS}/titles`;
-const MAX_GALLERY_IMAGES = 10;
+const MAX_GALLERY_IMAGES = 100;
 const GALLERY_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
 const makeAssetUrl = (relativePath) => new URL(relativePath, document.baseURI).href;
 
