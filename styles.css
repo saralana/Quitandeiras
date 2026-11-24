@@ -1504,3 +1504,21 @@ flex: 0 0 auto;
     align-items: flex-start;
   }
 }
+
+/* PAINEL SOBRE — transparência no desktop e ocultação do logo da home ao abrir */
+@media (min-width: 761px) {
+  .about-drawer {
+    background: rgba(245, 225, 195, .70);
+  }
+}
+
+.home-wordmark {
+  transition: opacity .22s ease, visibility .22s ease;
+}
+
+.home-wordmark.is-hidden-while-drawer-open {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+

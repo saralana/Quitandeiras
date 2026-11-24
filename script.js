@@ -180,12 +180,14 @@ const audioStatus = $("audio-status");
 const trackCount = $("track-count");
 const aboutBackdrop = $("about-backdrop");
 const aboutDrawer = $("about-drawer");
+const homeWordmarkButton = homeView.querySelector(".home-wordmark");
 
 let activePerson = null;
 let activeGalleryIndex = 0;
 let activeTrackIndex = 0;
 let currentPlaylist = [];
 let drawerIsOpen = false;
+let aboutOpener = null;
 let routeRenderId = 0;
 let galleryLoadId = 0;
 
@@ -521,8 +523,21 @@ async function toggleAudio() {
   }
 }
 
-function openAbout() {
+function openAbout(event) {
+  if (drawerIsOpen) return;
+
+  // Guarda o botão que abriu o painel para devolver o foco ao mesmo lugar.
+  aboutOpener = event?.currentTarget instanceof HTMLElement
+    ? event.currentTarget
+    : document.activeElement;
+
   drawerIsOpen = true;
+  if (homeWordmarkButton) {
+    homeWordmarkButton.classList.add("is-hidden-while-drawer-open");
+    homeWordmarkButton.setAttribute("aria-hidden", "true");
+    homeWordmarkButton.setAttribute("tabindex", "-1");
+  }
+
   aboutBackdrop.hidden = false;
   requestAnimationFrame(() => {
     aboutBackdrop.classList.add("is-visible");
@@ -540,8 +555,19 @@ function closeAbout(restoreFocus = true) {
   aboutDrawer.classList.remove("is-open");
   aboutDrawer.setAttribute("aria-hidden", "true");
   document.body.classList.remove("drawer-open");
+
+  if (homeWordmarkButton) {
+    homeWordmarkButton.classList.remove("is-hidden-while-drawer-open");
+    homeWordmarkButton.removeAttribute("aria-hidden");
+    homeWordmarkButton.removeAttribute("tabindex");
+  }
+
   window.setTimeout(() => { aboutBackdrop.hidden = true; }, 390);
-  if (restoreFocus) document.querySelector(".js-about-open")?.focus();
+  const openerToRestore = aboutOpener;
+  aboutOpener = null;
+  if (restoreFocus && openerToRestore?.isConnected && !openerToRestore.closest("[hidden]")) {
+    openerToRestore.focus();
+  }
 }
 
 wireImageFallback(homeWordmarkImage, homeWordmarkFallback);
